@@ -12,6 +12,6 @@ public class Scanners
         //Step 3 - Calculate Answer(s)
         
         //Step 4 - Output Answer(s)
-        System.in.println();
+        System.out.println();
     }
 }
