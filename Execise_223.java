@@ -5,5 +5,6 @@ public class Execise_223 {
         int ascii =s.nextInt();
         char c = (char) ascii;
         System.out.println("The character is "+ c);
+        
     }
 }
