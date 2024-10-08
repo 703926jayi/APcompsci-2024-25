@@ -8,7 +8,9 @@ public class MathTest {
         System.out.println("How many questions do you want?");
         int qnum = s.nextInt();
         int z = 0;
+        
         while(x <= qnum){
+        
             int n1 = (int)(Math.random()*7)+2;
             int n2 = (int)(Math.random()*19)-9;
             int n3 = (int)(Math.random()*89)+10;
@@ -28,7 +30,10 @@ public class MathTest {
             }
             x++;
         }
+        double p = ((double)z)/((double)x);
         System.out.println("Student: "+ name);
-        System.out.println("Results: ");
+        System.out.println("Results: "+  z + "\"" + x);
+        System.out.println("Test Percent: "+p);
+        System.out.println("Letter Grade");
     }
 }
