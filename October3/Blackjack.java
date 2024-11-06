@@ -1,25 +1,69 @@
-import java.util.Random;
+
+
 import java.util.Scanner;
 
 
 public class Blackjack {
-    private static Random random = new Random();
-    private static int gamesPlayed, playerWins, dealerWins, ties, blackjacks, playerBusts;
-    private static int longestWinStreak, longestLossStreak;
-    private static int currentWinStreak, currentLossStreak;
-    private static boolean fiveWinAchievement, fiveLossAchievement;
+    private static int numAces, numCards;
+    private static int gamesPlayed;
+    private static int playerWins;
+    private static int dealerWins;
+    private static int ties;
+    private static int blackjacks;
+    private static int playerBusts;
+    private static int longestWinStreak;
+    private static int longestLossStreak;
+    private static int currentWinStreak;
+    private static int currentLossStreak;
+    private static boolean fiveWinAchievement;
+    private static boolean fiveLossAchievement;
 
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to Blackjack Simulation!");
-        System.out.print("How many games would you like to simulate? ");
-        int numberOfGames = scanner.nextInt();
+        int gamesToPlay = getNumGames(scanner);
 
 
-        for (int i = 1; i <= numberOfGames; i++) {
+        for (int i = 1; i <= gamesToPlay; i++) {
+            gamesPlayed++;  
             System.out.println("Game #" + i);
-            playGame();
+            int playerHand = getHand();
+
+
+            if (isBlackjack(playerHand)) {
+                System.out.println("Blackjack! Player wins!");
+                recordWin();
+                blackjacks++;
+            } else if (isFiveCardWin()) {
+                System.out.println("Five card win! Player wins!");
+                recordWin();
+            } else if (isBust(playerHand)) {
+                System.out.println("Player busts with score " + playerHand + ". Dealer wins!");
+                recordLoss();
+                playerBusts++;
+            } else {
+                int dealerHand = getHand();
+
+
+                if (isBlackjack(dealerHand)) {
+                    System.out.println("Dealer blackjack! Dealer wins!");
+                    recordLoss();
+                } else if (isBust(dealerHand)) {
+                    System.out.println("Dealer busts with score " + dealerHand + ". Player wins!");
+                    recordWin();
+                } else if (dealerHand > playerHand) {
+                    System.out.println("Dealer wins with score " + dealerHand + " over player's " + playerHand + ".");
+                    recordLoss();
+                } else if (playerHand > dealerHand) {
+                    System.out.println("Player wins with score " + playerHand + " over dealer's " + dealerHand + ".");
+                    recordWin();
+                } else {
+                    System.out.println("It’s a tie.");
+                    ties++;
+                }
+            }
+
+
             System.out.println();
         }
 
@@ -29,127 +73,85 @@ public class Blackjack {
     }
 
 
-    private static void playGame() {
-        gamesPlayed++;
-        int[] playerHand = generateHand(true);
-        int playerScore = calculateScore(playerHand);
-        boolean playerBlackjack = isBlackjack(playerHand);
-        boolean fiveCardWin = (playerHand.length == 5 && playerScore <= 21);
-
-
-        // Determine player outcomes
-        if (playerScore > 21) {
-            System.out.println("Player busts with score " + playerScore + ". Dealer wins!");
-            recordLoss();
-            playerBusts++;
-            return;
-        } else if (playerBlackjack) {
-            System.out.println("Blackjack! Player wins!");
-            recordWin();
-            blackjacks++;
-            return;
-        } else if (fiveCardWin) {
-            System.out.println("Five card win! Player wins!");
-            recordWin();
-            return;
-        }
-
-
-        // Dealer plays
-        int[] dealerHand = generateHand(false);
-        int dealerScore = calculateScore(dealerHand);
-        boolean dealerBlackjack = isBlackjack(dealerHand);
-
-
-        // Check results
-        if (dealerScore > 21) {
-            System.out.println("Dealer busts with score " + dealerScore + ". Player wins!");
-            recordWin();
-        } else if (dealerBlackjack) {
-            System.out.println("Dealer blackjack! Dealer wins!");
-            recordLoss();
-        } else if (playerScore == dealerScore) {
-            System.out.println("It’s a tie.");
-            ties++;
-        } else if (playerScore > dealerScore) {
-            System.out.println("Player wins with score " + playerScore + " over dealer's " + dealerScore + ".");
-            recordWin();
-        } else {
-            System.out.println("Dealer wins with score " + dealerScore + " over player's " + playerScore + ".");
-            recordLoss();
-        }
+    private static int getNumGames(Scanner scanner) {
+        System.out.println("Welcome to Blackjack Simulation!");
+        System.out.print("How many games would you like to simulate? ");
+        return scanner.nextInt();
     }
 
 
-    private static int[] generateHand(boolean isPlayer) {
-        int[] hand = new int[5];
-        int cardCount = 0;
-        int score = 0;
+    private static int getHand() {
+        int hand = 0;
+        numAces = 0;
+        numCards = 0;
 
 
-        while (score < 17 && cardCount < 5) {
-            int card = getCard();
-            hand[cardCount++] = card;
-            score = calculateScore(hand);
-            if (score >= 17) break;
+        while (hand < 17) {
+            int cardValue = getCard();
+            hand += cardValue;
+            hand = adjustAces(hand);
         }
 
 
-        int[] finalHand = new int[cardCount];
-        System.arraycopy(hand, 0, finalHand, 0, cardCount);
-        printHand(finalHand, isPlayer ? "Player" : "Dealer");
-        return finalHand;
+        return hand;
     }
 
 
     private static int getCard() {
-        return random.nextInt(13) + 1;
-    }
+        numCards++;
+        int card = (int)(Math.random() * 13) + 1;
+        outputCard(card);
 
 
-    private static void printHand(int[] hand, String owner) {
-        System.out.print(owner + " hand: ");
-        for (int card : hand) {
-            System.out.print(outputCard(card) + " ");
-        }
-        System.out.println();
-    }
-
-
-    private static String outputCard(int card) {
-        switch (card) {
-            case 1: return "Ace";
-            case 11: return "Jack";
-            case 12: return "Queen";
-            case 13: return "King";
-            default: return String.valueOf(card);
+        if (card == 1) {
+            numAces++;
+            return 11;
+        } else if (card > 10) {
+            return 10;
+        } else {
+            return card;
         }
     }
 
 
-    private static int calculateScore(int[] hand) {
-        int score = 0;
-        int aces = 0;
-        for (int card : hand) {
-            if (card == 1) {
-                aces++;
-                score += 11;
-            } else if (card >= 10) {
-                score += 10;
-            } else {
-                score += card;
-            }
-        }
-        while (score > 21 && aces > 0) {
-            score -= 10;
-            aces--;
-        }
-        return score;
+    private static void outputCard(int card) {
+        if (card == 1) System.out.print("Ace ");
+        else if (card == 2) System.out.print("Two ");
+        else if (card == 3) System.out.print("Three ");
+        else if (card == 4) System.out.print("Four ");
+        else if (card == 5) System.out.print("Five ");
+        else if (card == 6) System.out.print("Six ");
+        else if (card == 7) System.out.print("Seven ");
+        else if (card == 8) System.out.print("Eight ");
+        else if (card == 9) System.out.print("Nine ");
+        else if (card == 10) System.out.print("Ten ");
+        else if (card == 11) System.out.print("Jack ");
+        else if (card == 12) System.out.print("Queen ");
+        else if (card == 13) System.out.print("King ");
     }
 
 
-    private static boolean isBlackjack(int[] hand) {
-        return hand.length == 2 && calculateScore(hand) == 21;
+    private static int adjustAces(int hand) {
+        if (hand > 21 && numAces > 0) {
+            hand -= 10;
+            numAces--;
+        }
+        return hand;
+    }
+
+
+    private static boolean isBlackjack(int hand) {
+        return hand == 21 && numCards == 2;
+    }
+
+
+    private static boolean isFiveCardWin() {
+        return numCards == 5;
+    }
+
+
+    private static boolean isBust(int hand) {
+        return hand > 21;
     }
 
 
@@ -157,8 +159,6 @@ public class Blackjack {
         playerWins++;
         currentWinStreak++;
         currentLossStreak = 0;
-
-
         if (currentWinStreak > longestWinStreak) longestWinStreak = currentWinStreak;
         if (currentWinStreak == 5 && !fiveWinAchievement) {
             System.out.println("Achievement unlocked: 5 consecutive wins!");
@@ -171,8 +171,6 @@ public class Blackjack {
         dealerWins++;
         currentLossStreak++;
         currentWinStreak = 0;
-
-
         if (currentLossStreak > longestLossStreak) longestLossStreak = currentLossStreak;
         if (currentLossStreak == 5 && !fiveLossAchievement) {
             System.out.println("Achievement unlocked: 5 consecutive losses!");
@@ -182,7 +180,8 @@ public class Blackjack {
 
 
     private static void displayFinalResults() {
-        double winPercentage = (double) playerWins / (gamesPlayed - ties) * 100;
+        int completedGames = gamesPlayed - ties;
+        double winPercentage = completedGames > 0 ? (double) playerWins / completedGames * 100 : 0;
         System.out.println("Simulation has Ended.");
         System.out.println("################");
         System.out.println("Final Results");
@@ -197,6 +196,6 @@ public class Blackjack {
         System.out.println("Longest Loss Streak: " + longestLossStreak);
         System.out.println("5 Win Achievement: " + fiveWinAchievement);
         System.out.println("5 Loss Achievement: " + fiveLossAchievement);
-        System.out.printf("Winning Percentage: %.3f%%\n", winPercentage);
+        System.out.println("Winning Percentage: " + (winPercentage) + "%");
     }
 }
