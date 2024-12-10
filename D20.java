@@ -6,6 +6,8 @@ public class D20 {
     static boolean showRolls = true;
 
 
+
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean hasRolled = false;

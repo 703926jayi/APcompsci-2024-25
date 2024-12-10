@@ -3,7 +3,11 @@ public class Test {
 
 	public static void main(String[] args) 
 {
-		Scanner s = new Scanner(System.in);
+		Scanner s = new Scanner(
+			
+		
+		
+		System.in);
 		//System.out.println("Enter an integer to build an array from:");
 		int num = s.nextInt();
 		int nums[] = new int[getSize(num)];

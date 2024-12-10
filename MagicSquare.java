@@ -14,6 +14,9 @@ public class MagicSquare {
     public static void initializeBoard(int[][] magic) {
         for (int row = 0; row < magic.length; row++) {
             for (int col = 0; col < magic[0].length; col++) {
+
+
+                
                 magic[row][col] = 0;
             }
         }
