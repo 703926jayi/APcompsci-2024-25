@@ -5,16 +5,17 @@ public class MyStringEasy {
 	//Examples:  dog--> DOG,  butter--> BUTTER,  try harder!-->  TRY HARDER!
 	public String goBigTime(String st)
 	{
-		Scanner s = new Scanner(System.in);
-		String z = s.next();
-        System.out.println(z.toUpperCase());
-		return st;
+		//Scanner s = new Scanner(System.in);
+		//String z = s.next();
+        //System.out.println(z.toUpperCase());
+		return st.toUpperCase();
 	}
 	
 	//This method will the number of characters in the string
 	//Examples  radar--> 5,    Madam, I'm Adam--> 15,  food-->  4
 	public int numChars(String st)
 	{
+		
 		return st.length();
 	}
 	
@@ -80,21 +81,57 @@ public class MyStringEasy {
         //This method will return the received String with all its vowels removed.
         //Only remove lower case y's at if they are the last character in the String
         //Examples  crypt --> crypt      trees --> trs     Sassafrass -->  Sssfrss  Yeti --> Yt
-	public String deleteVowels(String st)
-	{
-	
-		return "";
-	}
+		public String deleteVowels(String st)
+		{
+					if(st.charAt(st.length()-1)=='y') st = st.substring(0,st.length()-1);
+					for (int i = 0; i < st.length(); i++)
+					{
+						//if(st.charAt(i)=='a'||st.charAt(i)=='e'||st.charAt(i)=='i'||st.charAt(i)=='o'||st.charAt(i)=='o')
+						if(isVowel(st.charAt(i)))
+						{
+							st= (st.substring(0,i)+st.substring((i+1)));
+							i--;
+						}
+					}
+					return st;
+		}
+			public static boolean isVowel(char a)
+					{
+						if (a=='a'||a=='e'||a=='i'||a=='o'||a=='u'||a=='A'||a=='E'||a=='I'||a=='O'||a=='U') return true;
+						return false;
+					}
         
         //This method will shift all letters three to the right in the alphabet.
         //Make sure x,y and z "wrap" back to beginning of alphabet.  Spaces and non-letter
         //are not shifted.
         //Examples  Bill Dixon --> Eloo Glarq
-	public String shiftThree(String st)
-	{
-	
-		return "";
-	}
+		public String shiftThree(String st)
+		{
+				   String ee = "";
+					for (int i = 0; i < st.length(); i++)
+					{
+						if(st.charAt(i)!=' ')
+						{
+						if(!isXYZ(st.charAt(i)))
+						{
+							ee+=(char)(st.charAt(i)+3);
+						}
+						if(isXYZ(st.charAt(i)))
+						{
+							ee+=(char)(st.charAt(i)-23);
+						}
+						}
+						else ee+=(char)(st.charAt(i));
+		
+					}
+		
+		return ee;
+		}
+				public static boolean isXYZ(char a)
+				{
+					if(a=='x'||a=='y'||a=='z'||a=='X'||a=='Y'||a=='Z') return true;
+					return false;
+				}
         
         //This method will return true if the received String is a palindrome (same forward as backward)
         //In this method, it will be a single word, with no punctuation and all lower case letters
@@ -111,6 +148,16 @@ public class MyStringEasy {
 	public boolean isPalindromeHard(String st)
 	{
 	
-		return true;
+		if (st == null) {
+            return false;
+        }
+        StringBuilder filtered = new StringBuilder();
+        for (char ch : st.toCharArray()) {
+            if (Character.isLetterOrDigit(ch)) {
+                filtered.append(Character.toLowerCase(ch));
+            }
+        }
+        return isPalindrome(filtered.toString());
+
 	}
 }
