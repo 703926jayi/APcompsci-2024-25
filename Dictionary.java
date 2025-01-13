@@ -10,7 +10,7 @@ public class Dictionary {
                         
                         //practiceSearch1(dictionary);  //89 matches
                         //practiceSearch2(dictionary);  //deny, stub, stun, stud (4 matches)
-                        practiceSearch3(dictionary);  //39 matches
+                        //practiceSearch3(dictionary);  //39 matches
                         
                         //search1(dictionary);  
                         //search2(dictionary);   
@@ -82,7 +82,15 @@ public class Dictionary {
         //Find all words that contain both an “X” and a “K” and are six letters long or shorter.
         public static void search1(String[] dictionary)
         {
-           
+            int count = 0; //track how many strings meet criteria 
+            for(int i = 0; i < dictionary.length; i++){
+             String word = dictionary[i];
+             int doubleCount = 0;
+             for (int j = 0; j<word.length()-1; j++){
+
+             }
+            }
+            System.out.println(count+ " matches");
         }
         
         //Find all words that are made of characters with only odd ASCII values.
