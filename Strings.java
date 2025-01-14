@@ -12,11 +12,11 @@ public class Strings {
         //for (int i = 0; i < firstName.length();i++){
        //     System.out.println(firstName.charAt(i));
        // }
-       String word = "AP Computer Science";
+       String word = "AP Computr Scinc";
     //    System.out.println( word.substring(12) );
       //  System.out.println(word.substring(3,11));
       //  System.out.println(word.toUpperCase());
         System.out.println(word.indexOf("e"));
-        System.out.println(word.replace("e","y"));
+        //System.out.println(word.replace("e","y"));
     }
 }

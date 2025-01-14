@@ -13,7 +13,7 @@ public class Dictionary {
                         //practiceSearch3(dictionary);  //39 matches
                         
                         //search1(dictionary);  
-                        //search2(dictionary);   
+                        search2(dictionary);   
                         //search3(dictionary); 
                         //search4(dictionary);    
                         //search5(dictionary);  
@@ -45,7 +45,7 @@ public class Dictionary {
         //Find all four letters words in the dictionary that have 3 consecutive letters of the alphabet.  (EX:  DEFY)
         public static void practiceSearch2(String[] dictionary)
         {
-            int count = 0; //track how many strings meet criteria 
+            int count = 0; //track how many strings meet criteria seas
             for(int i = 0; i < dictionary.length; i++){
              String word = dictionary[i];
              if(word.length()==4){
@@ -87,7 +87,18 @@ public class Dictionary {
              String word = dictionary[i];
              int doubleCount = 0;
              for (int j = 0; j<word.length()-1; j++){
-
+                boolean a = false;
+                boolean b = false;
+                if(word.indexOf("K")!=-1 || word.indexOf("k")!=-1){
+                    a =  true;
+                }
+                if(word.indexOf("X")!=-1 || word.indexOf("x")!=-1){
+                    b =  true;
+                }
+                if(a==true&&b==true&&word.length()<=6){
+                    System.out.println(word);
+                    count++;
+                }
              }
             }
             System.out.println(count+ " matches");
@@ -96,7 +107,21 @@ public class Dictionary {
         //Find all words that are made of characters with only odd ASCII values.
         public static void search2(String[] dictionary)
         {
-            
+            int count = 0; 
+            for(int i = 0; i < dictionary.length; i++){
+                boolean odd = false;
+             String word = dictionary[i];
+             
+             if(word.charAt(i)%2!=1){
+                odd=true;
+             }
+             if(odd==true){
+                System.out.println(word);
+                count++;
+             }
+            }
+            System.out.println(count+ " matches");
+ 
         }
         
         //Find all words that have three vowels in a row.  Consider A, E, I, O and U vowels.  (Ex:  pious)
