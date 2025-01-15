@@ -13,14 +13,14 @@ public class Dictionary {
                         //practiceSearch3(dictionary);  //39 matches
                         
                         //search1(dictionary);  
-                        search2(dictionary);   
+                        //search2(dictionary);   
                         //search3(dictionary); 
                         //search4(dictionary);    
                         //search5(dictionary);  
                         //search6(dictionary); 
                         //search7(dictionary); 
                         //search8(dictionary);   
-                        //search9(dictionary);   
+                        search9(dictionary);   
                         //search10(dictionary); 
 	}
     
@@ -45,17 +45,7 @@ public class Dictionary {
         //Find all four letters words in the dictionary that have 3 consecutive letters of the alphabet.  (EX:  DEFY)
         public static void practiceSearch2(String[] dictionary)
         {
-            int count = 0; //track how many strings meet criteria seas
-            for(int i = 0; i < dictionary.length; i++){
-             String word = dictionary[i];
-             if(word.length()==4){
-                if(word.charAt(0)+1==word.charAt(1) && word.charAt(1)+1==word.charAt(2) || word.charAt(1)+1==word.charAt(2) && word.charAt(2)+1==word.charAt(3)-1){
-                count++;
-                System.out.println(word); 
-                }
-             }
-            }
-            System.out.println(count+ " matches");
+          
          }
          //Find words in the dictionary that has three sets of double letters (MISSISSIPPI would qualify)
         public static void practiceSearch3(String[] dictionary)
@@ -107,71 +97,171 @@ public class Dictionary {
         //Find all words that are made of characters with only odd ASCII values.
         public static void search2(String[] dictionary)
         {
-            int count = 0; 
-            for(int i = 0; i < dictionary.length; i++){
-                boolean odd = false;
-             String word = dictionary[i];
-             
-             if(word.charAt(i)%2!=1){
-                odd=true;
-             }
-             if(odd==true){
+                int count = 0;
+                for (int i = 0; i < dictionary.length; i++) {
+                    String word = dictionary[i];
+                    boolean allOdd = true;
+            
+                    for (int j = 0; j < word.length(); j++) {
+                        if (word.charAt(j) % 2 == 0) {
+                            allOdd = false;
+                            break;
+                        }
+                    }
+            
+                    if (allOdd) {
+                        System.out.println(word);
+                        count++;
+                    }
+                }
+                System.out.println(count + " matches");
+        }
+        
+        // Find all words that have three vowels in a row. Consider A, E, I, O, and U vowels.
+public static void search3(String[] dictionary) {
+    int count = 0;
+    for (int i = 0; i < dictionary.length; i++) {
+        String word = dictionary[i];
+        for (int j = 0; j < word.length() - 2; j++) {
+            if (isVowel(word.charAt(j)) && isVowel(word.charAt(j + 1)) && isVowel(word.charAt(j + 2))) {
                 System.out.println(word);
                 count++;
-             }
+                break;
             }
-            System.out.println(count+ " matches");
- 
         }
-        
-        //Find all words that have three vowels in a row.  Consider A, E, I, O and U vowels.  (Ex:  pious)
-        public static void search3(String[] dictionary)
-        {
-            
+    }
+    System.out.println(count + " matches");
+}
+
+// Find all words that are not palindromes but would be if the first and last letters were removed.
+// The original word must be at least 7 letters long.
+public static void search4(String[] dictionary) {
+    int count = 0;
+    for (int i = 0; i < dictionary.length; i++) {
+        String word = dictionary[i];
+        if (word.length() >= 7) {
+            String trimmed = word.substring(1, word.length() - 1);
+            if (!isPalindrome(word) && isPalindrome(trimmed)) {
+                System.out.println(word);
+                count++;
+            }
         }
-        
-        //Find all words that are not palindromes, but would be palindromes if you dropped the first and last letter.  The original word also has be at least 7 letters long.  (Ex:  SNIFFING)
-        public static void search4(String[] dictionary)
-        {
-            
+    }
+    System.out.println(count + " matches");
+}
+
+// Find all words that have more vowels than consonants.
+public static void search5(String[] dictionary) {
+    int count = 0;
+    for (int i = 0; i < dictionary.length; i++) {
+        String word = dictionary[i];
+        int vowels = 0, consonants = 0;
+        for (int j = 0; j < word.length(); j++) {
+            if (isVowel(word.charAt(j))) {
+                vowels++;
+            } else {
+                consonants++;
+            }
         }
-        
-        //Find all words that have more vowels than consonants.
-        public static void search5(String[] dictionary)
-        {
-            
+        if (vowels > consonants) {
+            System.out.println(word);
+            count++;
         }
-        
-        //Find all words that use the same letter four times or more.  (Ex:  Mississippi)
-        public static void search6(String[] dictionary)
-        {
-            
+    }
+    System.out.println(count + " matches");
+}
+
+// Find all words that use the same letter four times or more.
+public static void search6(String[] dictionary) {
+    int count = 0;
+    for (int i = 0; i < dictionary.length; i++) {
+        String word = dictionary[i];
+        for (int j = 0; j < word.length(); j++) {
+            char letter = word.charAt(j);
+            int occurrences = 0;
+            for (int k = 0; k < word.length(); k++) {
+                if (word.charAt(k) == letter) {
+                    occurrences++;
+                }
+            }
+            if (occurrences >= 4) {
+                System.out.println(word);
+                count++;
+                break;
+            }
         }
-        
-        //Find all words that can be made from the letters found in PROSTHETIC.  You can use as many of each of the letters in PROSTHETIC as you want.  EX:  PROPER, PROSPER
-        public static void search7(String[] dictionary)
-        {
-            
+    }
+    System.out.println(count + " matches");
+}
+
+// Find all words that contain the letters B I L L in order (not necessarily adjacent).
+public static void search8(String[] dictionary) {
+    int count = 0;
+    for (int i = 0; i < dictionary.length; i++) {
+        String word = dictionary[i];
+        int matchIndex = 0;
+        for (int j = 0; j < word.length(); j++) {
+            if (matchIndex == 0 && word.charAt(j) == 'B') matchIndex++;
+            else if (matchIndex == 1 && word.charAt(j) == 'I') matchIndex++;
+            else if (matchIndex == 2 && word.charAt(j) == 'L') matchIndex++;
+            else if (matchIndex == 3 && word.charAt(j) == 'L') {
+                System.out.println(word);
+                count++;
+                break;
+            }
         }
-        
-        //Find all words that contain the letters B I L L in that order, but not necessarily next to one another.  (Ex:  BLISSFULLY)
-        public static void search8(String[] dictionary)
-        {
-            
+    }
+    System.out.println(count + " matches");
+}
+
+public static void search9(String[] dictionary) {
+    int count = 0;
+
+    for (int i = 0; i < dictionary.length; i++) {
+        String word = dictionary[i];
+        if (word == null || word.length() < 12) continue;
+
+        for (int j = 6; j <= word.length() - 6; j++) {
+            String part1 = word.substring(0, j);
+            String part2 = word.substring(j);
+
+            boolean part1Found = false;
+            boolean part2Found = false;
+
+            for (int k = 0; k < dictionary.length; k++) {
+                if (dictionary[k] == null) continue;
+
+                if (dictionary[k].equals(part1)) part1Found = true;
+                if (dictionary[k].equals(part2)) part2Found = true;
+
+                if (part1Found && part2Found) break;
+            }
+
+            if (part1Found && part2Found) {
+                System.out.println(word);
+                count++;
+                break;
+            }
         }
-        
-        //Find all words that are compound words made from two other words in the dictionary.  Each of the words must be at least 6 letters long 
-        //(Ex:  BATTLEGROUNDS is made from “cow” and “boy”, both of which exist in the dictionary.
-        public static void search9(String[] dictionary)
-        {
-            
+    }
+
+    System.out.println(count + " matches");
+}
+// Find all odd-length words that do not start with "S" and have the same first, middle, and last letters.
+public static void search10(String[] dictionary) {
+    int count = 0;
+    for (int i = 0; i < dictionary.length; i++) {
+        String word = dictionary[i];
+        if (word.length() % 2 == 1 && word.charAt(0) != 'S') {
+            int midIndex = word.length() / 2;
+            if (word.charAt(0) == word.charAt(midIndex) && word.charAt(midIndex) == word.charAt(word.length() - 1)) {
+                System.out.println(word);
+                count++;
+            }
         }
-        
-        //Find all odd length words that do not start with an “S” and have the same first, middle and last letter.  (Ex:  ATLANTA)
-         public static void search10(String[] dictionary)
-        {
-            
-        }
+    }
+    System.out.println(count + " matches");
+}
 	public static String[] buildDictionary()
 	{
 		String[] wordList = new String[45402];
