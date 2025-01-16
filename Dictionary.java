@@ -20,8 +20,10 @@ public class Dictionary {
                         //search6(dictionary); 
                         //search7(dictionary); 
                         //search8(dictionary);   
-                        search9(dictionary);   
+                        //search9(dictionary);   
                         //search10(dictionary); 
+                        //search11(dictionary); 
+                        search12(dictionary); 
 	}
     
         //Find all the words that start and end with a vowel and more than 12 letters long
@@ -259,6 +261,39 @@ public static void search10(String[] dictionary) {
                 count++;
             }
         }
+    }
+    System.out.println(count + " matches");
+}
+
+public static void search11(String[] dictionary) {
+    int count = 0;
+    for (int i = 0; i < dictionary.length; i++) {
+        String word = dictionary[i];
+        if(isPalindrome(word)&& word.length()%2==1){
+            System.out.println(word);
+            count++;
+        }
+    }
+    System.out.println(count + " matches");
+}
+public static void search12(String[] dictionary) {
+    int count = 0;
+    boolean z = true;
+
+    for (int i = 0; i < dictionary.length; i++) {
+        String word = dictionary[i];
+        for(int j=0;j<word.length();j++){
+           if(word.charAt(j)<=72||word.charAt(j)>=86){
+             System.out.println(word.charAt(j));
+            }
+        }
+        if (z = true){
+            System.out.println(word);
+            count++;
+        }
+
+
+        
     }
     System.out.println(count + " matches");
 }
