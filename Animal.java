@@ -53,7 +53,7 @@ public class Animal {
     }
 
     public static int getNumAnimals() {
-        return numAnimals;
+        return Mammal.getNumMammals()+Bird.getNumBirds();
     }
 
     public void makeSound() {
