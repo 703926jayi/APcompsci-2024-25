@@ -4,7 +4,6 @@ public class Animal {
     private char gender;
     private String reproduction;
     private static int numAnimals;
-
     public Animal() {
         this.alive = true;
         this.numLegs = 4;

@@ -73,23 +73,20 @@ public class Element {
             System.out.println(name + " doesn't combine with " + other.name + ": Both valence charges have same polarity.");
             return;
         }
-
         int absValence1 = Math.abs(valence);
         int absValence2 = Math.abs(other.valence);
         int lcm = lcm(absValence1, absValence2);
-
         int count1 = lcm / absValence1;
         int count2 = lcm / absValence2;
-
         if (count1 > 4 || count2 > 4) {
             System.out.println(name + " doesn't combine with " + other.name + ": Molecule would require more than four atoms of one element.");
             return;
         }
 
         if (valence > 0) {
-            System.out.println(name + " combines with " + other.name + " to form " + (count1 == 1 ? "" : count1) + symbol + (count2 == 1 ? "" : count2) + other.symbol);
+            System.out.println(name + " combines with " + other.name + " to form " + symbol +(count1 == 1 ? "" : count1) +  other.symbol+ (count2 == 1 ? "" : count2) );
         } else {
-            System.out.println(other.name + " combines with " + name + " to form " + (count2 == 1 ? "" : count2) + other.symbol + (count1 == 1 ? "" : count1) + symbol);
+            System.out.println(other.name + " combines with " + name + " to form "  + other.symbol  + (count2 == 1 ? "" : count2)+ symbol+(count1 == 1 ? "" : count1) );
         }
     }
 

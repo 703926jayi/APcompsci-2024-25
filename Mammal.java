@@ -2,7 +2,7 @@ public class Mammal extends Animal {
     private boolean domestic;
     private int value;
     private boolean hasFingers;
-    protected static int numMammals;
+    private static int numMammals;
 
     public Mammal() {
         super();
@@ -19,8 +19,9 @@ public class Mammal extends Animal {
         } else if (getGender() == 'm') {
             System.out.println("Males cannot give birth.");
         } else {
-            numMammals++;
             System.out.println("Another animal is born into the world.");
+            numMammals++; 
+
         }
     }
 
@@ -33,9 +34,6 @@ public class Mammal extends Animal {
             System.out.println("You can't pick your nose without fingers.");
         }
     }
-    public static void decrementNumMammals() {
-        numMammals--;
-        }
 
     public void pet() {
         if (!isAlive()) {
