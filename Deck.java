@@ -51,6 +51,6 @@ public class Deck {
     // extra credit if all cards line up when outputted
 
     public String toString() {
-        return "";
+        return shoe.toString();
     }
 }
