@@ -17,7 +17,6 @@ public class ArrayListDemo{
          names[0] = st;
          names[1] = st2; 
          names[2] = st3;
-
          System.out.println(name.size());
          name.remove(1);
          System.out.println(name.size());
