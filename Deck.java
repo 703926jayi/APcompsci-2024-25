@@ -6,8 +6,15 @@ public class Deck {
 
     // No-arg constructor should build a deck out of 52 cards
     public Deck() {
-
+        for (int j = 1; j < 5; j++) {
+        for (int i = 1; i < 14; i++) {
+            if(i != 0&& j !=0){
+                shoe.add(new Card(i, j));
+            }
+        }
     }
+    }
+    
 
     // Constructor receiving an integer will build shoe out of <int> decks.
     public Deck(int numDecks) {
@@ -19,9 +26,12 @@ public class Deck {
     // the
     // Cards should be lost, just moved to a new index within the ArrayList.
     public void shuffle() {
-        for (int i = 0; i < 13; i++) {
-            for (int j = 0; j < 4; j++) {
-                shoe1.add(new Card(i, j));
+       
+            for (int i = 1; i < 14; i++) {
+                for (int j = 1; j < 5; j++) {
+                if(new Card(i,j) != null){
+                    shoe1.add(new Card(i, j));
+                }
             }
         }
         shoe = shoe1;
