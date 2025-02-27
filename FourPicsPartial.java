@@ -1,4 +1,4 @@
-package FourPics;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -45,7 +45,6 @@ public static void getSizeAndLetters()
 {
 	Scanner s=  new Scanner(System.in);
 	System.out.println("Enter number of letters in word:");
-	numLetters = s.nextInt();  //numLetters specifies the number of letters in the word we are searching for 
 	System.out.println("Enter available letters as a block of 12 letters:  (ex:  psbnoiyzvlvw)");
 	String block = s.next();
 	letters=block.toCharArray();  //build an array of characters from the word provided by user
