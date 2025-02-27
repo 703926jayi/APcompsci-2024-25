@@ -41,6 +41,7 @@ public class Deck {
                 System.out.println(shoe.remove(0));
             }
         }
+        System.out.println("Cards remaining - " + shoe.size());
     }
 
     public String toString() {
@@ -55,12 +56,7 @@ public class Deck {
         }
         return result;
     }
-    public void displayRemainingCards() {
-        System.out.println("Remaining cards in the shoe:");
-        for (int i = 0; i < shoe.size(); i++) {
-            System.out.println(shoe.get(i));
-        }
-    }
+   
     public ArrayList<Card> getShoe() {
         return shoe;
     }
