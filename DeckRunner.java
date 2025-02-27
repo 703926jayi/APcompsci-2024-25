@@ -19,6 +19,6 @@ public class DeckRunner
         deck2.dealHand();
         System.out.println("\nStep # 6 - Hand # 2\n");
         deck2.dealHand();
-        System.out.println("Cards remaining - " + deck2.getShoe().size()  );
+        System.out.println("Cards remaining - " + deck2.getShoe().size());
     }
 }

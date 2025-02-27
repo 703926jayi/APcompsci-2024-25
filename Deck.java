@@ -3,6 +3,10 @@ import java.util.Random;
 
 public class Deck {
     private ArrayList<Card> shoe = new ArrayList<Card>();
+    
+    public ArrayList<Card> getShoe() {
+        return shoe;
+    }
 
     // No-arg constructor should build a deck out of 52 cards
     public Deck() {
@@ -12,6 +16,7 @@ public class Deck {
             }
         }
     }
+
 
     // Constructor receiving an integer will build shoe out of <int> decks.
     public Deck(int numDecks) {
@@ -24,6 +29,7 @@ public class Deck {
         }
     }
 
+
     // Custom shuffle method will randomly shuffle the elements in the ArrayList.
     public void shuffle() {
         for (int i = shoe.size() - 1; i > 0; i--) {
@@ -34,6 +40,7 @@ public class Deck {
         }
     }
 
+
     // dealHand - This method will remove and output the top five Cards from the shoe ArrayList
     public void dealHand() {
         for (int i = 0; i < 5; i++) {
@@ -42,6 +49,7 @@ public class Deck {
             }
         }
     }
+
 
     public String toString() {
         String result = "";
@@ -56,7 +64,6 @@ public class Deck {
         return result;
     }
    
-    public ArrayList<Card> getShoe() {
-        return shoe;
-    }
+
+  
 }
