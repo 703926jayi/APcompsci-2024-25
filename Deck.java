@@ -41,7 +41,6 @@ public class Deck {
                 System.out.println(shoe.remove(0));
             }
         }
-        System.out.println("Cards remaining - " + shoe.size());
     }
 
     public String toString() {
