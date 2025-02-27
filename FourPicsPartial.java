@@ -82,11 +82,10 @@ public static boolean containsChar(String st, char[] c)
 			{
 				if (st.charAt(i) == c[j]) 
 				{  
-					//make sure does not return true if duplicate letters are there
-					// if (st.indexOf(st.charAt(i)) != st.lastIndexOf(st.charAt(i))) 
-					// {
-					// 	return false;
-					// }
+					 if (st.indexOf(st.charAt(i)) != st.lastIndexOf(st.charAt(i))) 
+					{
+						c[j] = ' ';
+					 }
 					found = true;
 					break;
 				}
