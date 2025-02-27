@@ -20,6 +20,6 @@ public class DeckRunner
         System.out.println("\nStep # 6 - Hand # 2\n");
         deck2.dealHand();
         System.out.println("\nStep # 6 - Card remaining - ");
-        //Finish the above statement to output the number of cards left in deck2
+        deck2.displayRemainingCards();
     }
 }
