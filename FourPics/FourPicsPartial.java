@@ -34,7 +34,7 @@ public static ArrayList<String> buildDictionary()
 	}
 	while (input.hasNext())
 	{
-		String word = input.nextLine();  //one word appears on each line in the text file
+		String word = input.nextLine().toLowerCase();  //one word appears on each line in the text file
 		wordList.add(word); 			//add each word into the wordList ArrayList
 	}
 	input.close();
@@ -52,6 +52,14 @@ public static void getSizeAndLetters()
 }
 public static void checkLength()
 	{
+		for (int i = 0; i < dictionary.size(); i++)  
+		{
+			if (dictionary.get(i).length() != numLetters) 
+			{
+				dictionary.remove(i);  
+				i--;  
+			}
+		}
 		System.out.println("After eliminated words of different length, " + dictionary.size() + " remain.");
 	}
 public static void  checkLetters()  //checks to make sure all letters in the word are included in the block of 12 letters
