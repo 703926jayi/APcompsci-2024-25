@@ -64,6 +64,19 @@ public static void checkLength()
 	}
 public static void  checkLetters()  //checks to make sure all letters in the word are included in the block of 12 letters
 	{
+		for (int i = 0; i < dictionary.size(); i++)  
+		{
+			String word = dictionary.get(i);
+			for (int j = 0; j < word.length(); j++) 
+			{
+				if (!containsChar(word, letters)) 
+				{
+					dictionary.remove(i);  
+					i--;  
+					break;
+				}
+			}
+		}
 		System.out.println("After checking the letters provided to those left,  " + dictionary.size() + " remain.");
 	}
 public static boolean containsChar(String st, char[] c)
@@ -72,7 +85,11 @@ public static boolean containsChar(String st, char[] c)
 	}
 public static void outputWords()
 	{
-		
+		for (int i = 0; i < dictionary.size(); i++) 
+		{
+			System.out.println(dictionary.get(i));
+		}
+		System.out.println("Total number of words found: " + dictionary.size());
 	}
 
 }
