@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class FourPicsPartial {
 
     static ArrayList<String> dictionary = new ArrayList<String>();  //holds all the words in the dictionary text file
@@ -83,9 +84,7 @@ public class FourPicsPartial {
         }
         return true;
     }
-	
-
-    public static void outputWords() {
+	public static void outputWords() {
         for (int i = 0; i < dictionary.size(); i++) {
             System.out.println(dictionary.get(i));
         }
