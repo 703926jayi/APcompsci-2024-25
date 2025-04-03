@@ -139,8 +139,17 @@ public class ConnectFour {
     }
 
     private static boolean playAgain() {
-        System.out.println("Do you want to play another game? (yes/no)");
-        return scanner.next().equalsIgnoreCase("yes");
+        while (true) {
+            System.out.println("Do you want to play another game? (yes/no)");
+            String response = scanner.next().toLowerCase();
+            if (response.equals("yes")) {
+                return true;
+            } else if (response.equals("no")) {
+                return false;
+            } else {
+                System.out.println("Invalid input. Please enter 'yes' or 'no'.");
+            }
+        }
     }
 
     private static void review() {
