@@ -1,19 +1,3 @@
-// This is a cryptography assignment.
-// The user will enter an integer in the range from -25 to 25. The alphabet will be shifted that many characters. For
-// example, if the user entered -1, the alphabet will be shifted one to the left, meaning the new alphabet is:
-// BCDEFGHIJKLMNOPQRSTUVWXYZA
-// Make sure your new alphabet “wraps” around, either on the left or right side.
-// The user will then provide a String that will be converted to its cryptographical equivalent, using your new alphabet.
-// Make sure the user’s input in converted to upper case.
-// For example, if the user entered “APPLE”, the program will output BQQMF.
-// Your program should leave spacing, numbers and punctuation alone, only changing the letters.
-// Here’s your test cases:
-// -1 10 -15
-// Kelvin licks walls &quot;Hold the door!&quot;, said Hodor. Pizza and 20 points of extra credit!
-// JDKUHM KHBJR VZKKR &quot;RYVN DRO NYYB!&quot;, CKSN RYNYB. ATKKL LYO 20 AZTYED ZQ PIECL NCPOTE!
-
-// Depending on how you code this, you might need to user 2 different Scanners for each input .
-//do without apend call
 import java.util.Scanner;
 
 public class Coder {
