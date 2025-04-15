@@ -47,10 +47,5 @@ public class GameSpinner {
         g.currentRun();
         g.spin();
         g.currentRun();
-
-
-
-
-
     }
 }
