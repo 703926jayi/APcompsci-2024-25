@@ -68,64 +68,12 @@ package Battleship;
 //  Each guess should update the game board and redisplay the state of the game in the console.
 //  An input of ?? will reveal the solution of the board, without disrupting or changing play of the board.
 //  An input of SS will output the names of the ships remaining on the board.
-public class Ship {
-    private String name;
-    private int size;
-    private int hits;
-    private boolean sunk;
-    private char symbol;
-    private Coordinate[] coordinates; // Array of coordinates occupied by the ship
-
-    public Ship(String name, int size, char symbol) {
-        this.name = name;
-        this.size = size;
-        this.symbol = symbol;
-        this.hits = 0;
-        this.sunk = false;
-        this.coordinates = new Coordinate[size]; // Initialize the array with the size of the ship
-    }
-    public void setCoordinates(int index, Coordinate coordinate) {
-        if (index >= 0 && index < size) {
-            coordinates[index] = coordinate;
-        } else {
-            System.out.println("Index out of bounds for ship coordinates.");
-        }
-    }
-
-    public boolean hit() {
-        hits++;
-        if (hits >= size) {
-            sunk = true;
-            System.out.println("You sank the " + name + "!");
-            return true; 
-        }
-        return false; 
-    }
-
-    public String getName() {
-        return name;
-    }
+public class BattleshipRunner {
     
-    public int getSize() {
-        return size;
-    }
-
-    public int getHits() {
-        return hits;
-    }
-
-    public boolean isSunk() {
-        return sunk;
-    }
-
-    public char getSymbol() {
-        return symbol;
-    }
-
-    public Coordinate[] getCoordinates() {
-        return coordinates;
+    public static void main(String[] args) {
+        Board board = new Board();
+        board.play();
     }
 
 
-    
 }
